@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h2>Excluir registro diário</h2>
+
+<hr>
+
+<p>
+    Tem certeza que deseja excluir este registro diário?
+</p>
+
+<p>
+    <strong>Paciente:</strong> {{ registro.paciente.nome }}
+</p>
+
+<p>
+    <strong>Data:</strong>
+    {{ registro.data_registro|date:"d/m/Y H:i" }}
+</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="grupo-botoes">
+
+        <button type="submit" class="botao">
+            Confirmar exclusão
+        </button>
+
+        <a href="/registros/{{ registro.id }}/" class="botao botao-secundario">
+            Cancelar
+        </a>
+
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h2>Pacientes cadastrados</h2>
+<a href="/pacientes/cadastrar/" class="botao">Novo paciente</a>
+<br><br>
+
+<hr>
+
+{% if pacientes %}
+
+    <ul class="lista-pacientes">
+        {% for paciente in pacientes %}
+            <li class="card-paciente">
+                <a href="/pacientes/{{ paciente.id }}/">
+                    {{ paciente.nome }}
+                </a>
+                <br>
+                <span>{{ paciente.idade }} anos</span>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% else %}
+
+    <p>Nenhum paciente cadastrado.</p>
+
+{% endif %}
+
+{% endblock %}

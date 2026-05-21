@@ -1,0 +1,108 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h2>Editar registro diário</h2>
+
+<p><strong>Paciente:</strong> {{ registro.paciente.nome }}</p>
+
+<hr>
+
+<form method="post" class="formulario">
+    {% csrf_token %}
+
+    <h3>Sinais vitais</h3>
+
+    <p>
+        <label>Temperatura:</label><br>
+        <input type="number" step="0.1" name="temperatura" value="{{ registro.temperatura|stringformat:'s' }}" required>
+    </p>
+
+    <p>
+        <label>Pressão arterial:</label><br>
+        <input type="text" name="pressao_arterial" value="{{ registro.pressao_arterial }}" required>
+    </p>
+
+    <p>
+        <label>Horas de sono noturnas:</label><br>
+        <input type="number" step="0.1" name="horas_sono" value="{{ registro.horas_sono|stringformat:'s' }}" required>
+    </p>
+
+    <p>
+        <label>Frequência cardíaca:</label><br>
+        <input type="number" name="frequencia_cardiaca" value="{{ registro.frequencia_cardiaca }}">
+    </p>
+
+    <p>
+        <label>Frequência respiratória:</label><br>
+        <input type="number" name="frequencia_respiratoria" value="{{ registro.frequencia_respiratoria }}">
+    </p>
+
+    <p>
+        <label>Glicemia:</label><br>
+        <input type="number" name="glicemia" value="{{ registro.glicemia }}">
+    </p>
+
+    <hr>
+
+    <h3>Nível de funcionalidade</h3>
+
+    <p>
+        <label>Alimentação:</label><br>
+        <select name="alimentacao" required>
+            <option value="sozinho" {% if registro.alimentacao == 'sozinho' %}selected{% endif %}>Sozinho</option>
+            <option value="com_auxilio" {% if registro.alimentacao == 'com_auxilio' %}selected{% endif %}>Com auxílio</option>
+            <option value="nao_realizou" {% if registro.alimentacao == 'nao_realizou' %}selected{% endif %}>Não realizou</option>
+        </select>
+    </p>
+
+    <p>
+        <label>Locomoção:</label><br>
+        <select name="locomocao" required>
+            <option value="sozinho" {% if registro.locomocao == 'sozinho' %}selected{% endif %}>Sozinho</option>
+            <option value="com_auxilio" {% if registro.locomocao == 'com_auxilio' %}selected{% endif %}>Com auxílio</option>
+            <option value="nao_realizou" {% if registro.locomocao == 'nao_realizou' %}selected{% endif %}>Não realizou</option>
+        </select>
+    </p>
+
+    <p>
+        <label>Transferência (levantar/sentar):</label><br>
+        <select name="transferencia" required>
+            <option value="sozinho" {% if registro.transferencia == 'sozinho' %}selected{% endif %}>Sozinho</option>
+            <option value="com_auxilio" {% if registro.transferencia == 'com_auxilio' %}selected{% endif %}>Com auxílio</option>
+            <option value="nao_realizou" {% if registro.transferencia == 'nao_realizou' %}selected{% endif %}>Não realizou</option>
+        </select>
+    </p>
+
+    <p>
+        <label>Tomar banho:</label><br>
+        <select name="banho" required>
+            <option value="sozinho" {% if registro.banho == 'sozinho' %}selected{% endif %}>Sozinho</option>
+            <option value="com_auxilio" {% if registro.banho == 'com_auxilio' %}selected{% endif %}>Com auxílio</option>
+            <option value="nao_realizou" {% if registro.banho == 'nao_realizou' %}selected{% endif %}>Não realizou</option>
+        </select>
+    </p>
+
+    <p>
+        <label>Vestir-se:</label><br>
+        <select name="vestir_se" required>
+            <option value="sozinho" {% if registro.vestir_se == 'sozinho' %}selected{% endif %}>Sozinho</option>
+            <option value="com_auxilio" {% if registro.vestir_se == 'com_auxilio' %}selected{% endif %}>Com auxílio</option>
+            <option value="nao_realizou" {% if registro.vestir_se == 'nao_realizou' %}selected{% endif %}>Não realizou</option>
+        </select>
+    </p>
+
+    <hr>
+
+    <p>
+        <label>Observações gerais:</label><br>
+        <textarea name="observacoes" rows="5" cols="50">{{ registro.observacoes }}</textarea>
+    </p>
+
+    <div class="grupo-botoes">
+        <button type="submit" class="botao">Salvar alterações</button>
+        <a href="/registros/{{ registro.id }}/" class="botao botao-secundario">Voltar</a>
+    </div>
+</form>
+
+{% endblock %}

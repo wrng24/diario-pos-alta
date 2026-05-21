@@ -1,0 +1,71 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h2>{{ paciente.nome }}</h2>
+
+<p><strong>Idade:</strong> {{ paciente.idade }} anos</p>
+<p><strong>Diagnóstico/Motivo da internação:</strong> {{ paciente.diagnostico }}</p>
+<p><strong>Data da alta:</strong> {{ paciente.data_alta }}</p>
+
+
+<a href="/pacientes/{{ paciente.id }}/editar/" class="botao">
+    Editar paciente
+</a>
+
+<a href="/pacientes/{{ paciente.id }}/registro/cadastrar/" class="botao">
+    Novo registro diário
+</a>
+
+<a href="/pacientes/{{ paciente.id }}/excluir/" class="botao">
+    Excluir paciente
+</a>
+
+<a href="/pacientes/" class="botao botao-secundario">
+    Voltar
+</a>
+
+<hr>
+
+<h3>Histórico de registros</h3>
+
+{% if registros %}
+
+    {% for registro in registros %}
+        <div class="card-registro">
+            <p class="info-principal">
+                {{ registro.data_registro|date:"d/m/Y H:i" }}
+            </p>
+
+            <p>
+                <strong>Temperatura:</strong> {{ registro.temperatura }}°C |
+                <strong>Pressão:</strong> {{ registro.pressao_arterial }} |
+                <strong>Sono:</strong> {{ registro.horas_sono }}h
+            </p>
+
+            <p>
+                <strong>Alimentação:</strong> {{ registro.get_alimentacao_display }} |
+                <strong>Locomoção:</strong> {{ registro.get_locomocao_display }} |
+                <strong>Banho:</strong> {{ registro.get_banho_display }}
+            </p>
+
+            {% if registro.observacoes %}
+                <p>
+                    <strong>Observações:</strong> {{ registro.observacoes }}
+                </p>
+            {% endif %}
+
+            <p>
+                <a href="/registros/{{ registro.id }}/" class="botao">Ver detalhes</a>
+            </p>
+
+        </div>
+    {% endfor %}
+
+{% else %}
+
+    <p>Nenhum registro diário cadastrado para este paciente.</p>
+
+{% endif %}
+
+{% endblock %}

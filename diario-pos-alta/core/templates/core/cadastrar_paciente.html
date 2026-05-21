@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h2>Cadastrar paciente</h2>
+
+<hr>
+
+<form method="post" class="formulario">
+    {% csrf_token %}
+
+    <p>
+        <label>Nome:</label><br>
+        <input type="text" name="nome" required>
+    </p>
+
+    <p>
+        <label>Idade:</label><br>
+        <input type="number" name="idade" required>
+    </p>
+
+    <p>
+        <label>Diagnóstico ou motivo da internação:</label><br>
+        <input type="text" name="diagnostico" required>
+    </p>
+
+    <p>
+        <label>Data da alta:</label><br>
+        <input type="date" name="data_alta" required>
+    </p>
+
+    <div class="grupo-botoes">
+        <button type="submit" class="botao">Salvar</button>
+        <a href="/pacientes/" class="botao botao-secundario">Voltar</a>
+    </div>
+</form>
+
+{% endblock %}

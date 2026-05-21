@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h2>Excluir paciente</h2>
+
+<hr>
+
+<p>
+    Tem certeza que deseja excluir o paciente
+    <strong>{{ paciente.nome }}</strong>?
+</p>
+
+<p>
+    Todos os registros diários relacionados também serão removidos.
+</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="grupo-botoes">
+        <button type="submit" class="botao">
+            Confirmar exclusão
+        </button>
+
+        <a href="/pacientes/{{ paciente.id }}/" class="botao botao-secundario">
+            Cancelar
+        </a>
+    </div>
+</form>
+
+{% endblock %}

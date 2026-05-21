@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diário Pós-Alta</title>
+
+    <style>
+        body {
+            background-color: #f4f6f8;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #3f6f8c;
+            color: white;
+            padding: 18px 40px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 18px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.08);
+        }
+
+        .botao {
+            display: inline-block;
+            background-color: #5f8ea8;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .botao:hover {
+            background-color: #4d7a92;
+        }
+
+        .botao-secundario {
+            background-color: #9aa8b2;
+        }
+
+        .botao-secundario:hover {
+            background-color: #7f8d97;
+        }
+
+        .formulario p {
+            margin-bottom: 18px;
+        }
+
+        .formulario label {
+            font-weight: bold;
+        }
+
+        .formulario input,
+        .formulario select,
+        .formulario textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccd6dd;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        .grupo-botoes {
+            margin-top: 20px;
+        }
+
+        .card-registro {
+            background-color: #f8fafc;
+            border-left: 5px solid #5f8ea8;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .card-registro p {
+            margin: 6px 0;
+        }
+
+        .info-principal {
+            font-weight: bold;
+            color: #3f6f8c;
+        }
+
+        .lista-pacientes {
+            display: grid;
+            gap: 15px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .card-paciente {
+            background-color: #f8fafc;
+            border-left: 5px solid #5f8ea8;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .card-paciente a {
+            color: #3f6f8c;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .card-paciente a:hover {
+            text-decoration: underline;
+        }
+
+        .card-paciente span {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Diário Pós-Alta</h1>
+        <nav>
+            <a href="/">Início</a>
+            <a href="/pacientes/">Pacientes</a>
+
+            {% if user.is_authenticated %}
+                <a href="/logout/">Sair</a>
+            {% else %}
+                <a href="/login/">Login</a>
+            {% endif %}
+
+            <a href="/admin">Admin</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>

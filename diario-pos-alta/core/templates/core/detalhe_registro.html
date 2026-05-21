@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h2>Detalhes do registro diário</h2>
+
+<p><strong>Paciente:</strong> {{ registro.paciente.nome }}</p>
+<p><strong>Data do registro:</strong> {{ registro.data_registro|date:"d/m/Y H:i" }}</p>
+
+<hr>
+
+<h3>Sinais vitais</h3>
+
+<p><strong>Temperatura:</strong> {{ registro.temperatura }}°C</p>
+<p><strong>Pressão arterial:</strong> {{ registro.pressao_arterial }}</p>
+<p><strong>Horas de sono noturnas:</strong> {{ registro.horas_sono }}h</p>
+
+{% if registro.frequencia_cardiaca %}
+    <p><strong>Frequência cardíaca:</strong> {{ registro.frequencia_cardiaca }} bpm</p>
+{% endif %}
+
+{% if registro.frequencia_respiratoria %}
+    <p><strong>Frequência respiratória:</strong> {{ registro.frequencia_respiratoria }} rpm</p>
+{% endif %}
+
+{% if registro.glicemia %}
+    <p><strong>Glicemia:</strong> {{ registro.glicemia }} mg/dL</p>
+{% endif %}
+
+<hr>
+
+<h3>Nível de funcionalidade</h3>
+
+<p><strong>Alimentação:</strong> {{ registro.get_alimentacao_display }}</p>
+<p><strong>Locomoção:</strong> {{ registro.get_locomocao_display }}</p>
+<p><strong>Transferência (levantar/sentar):</strong> {{ registro.get_transferencia_display }}</p>
+<p><strong>Tomar banho:</strong> {{ registro.get_banho_display }}</p>
+<p><strong>Vestir-se:</strong> {{ registro.get_vestir_se_display }}</p>
+
+<hr>
+
+<h3>Observações gerais</h3>
+
+{% if registro.observacoes %}
+    <p>{{ registro.observacoes }}</p>
+{% else %}
+    <p>Nenhuma observação registrada.</p>
+{% endif %}
+
+<br>
+
+<a href="/registros/{{ registro.id }}/editar/" class="botao">
+    Editar registro
+</a>
+
+<a href="/registros/{{ registro.id }}/excluir/" class="botao">
+    Excluir registro
+</a>
+
+<a href="/pacientes/{{ registro.paciente.id }}/" class="botao botao-secundario">
+    Voltar
+</a>
+
+{% endblock %}

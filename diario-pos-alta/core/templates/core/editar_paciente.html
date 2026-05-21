@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h2>Editar paciente</h2>
+
+<hr>
+
+<form method="post" class="formulario">
+    {% csrf_token %}
+
+    <p>
+        <label>Nome:</label><br>
+        <input type="text" name="nome" value="{{ paciente.nome }}" required>
+    </p>
+
+    <p>
+        <label>Idade:</label><br>
+        <input type="number" name="idade" value="{{ paciente.idade }}" required>
+    </p>
+
+    <p>
+        <label>Diagnóstico ou motivo da internação:</label><br>
+        <input type="text" name="diagnostico" value="{{ paciente.diagnostico }}" required>
+    </p>
+
+    <p>
+        <label>Data da alta:</label><br>
+        <input type="date" name="data_alta" value="{{ paciente.data_alta|date:'Y-m-d' }}" required>
+    </p>
+
+    <div class="grupo-botoes">
+        <button type="submit" class="botao">Salvar alterações</button>
+        <a href="/pacientes/{{ paciente.id }}/" class="botao botao-secundario">Voltar</a>
+    </div>
+</form>
+
+{% endblock %}

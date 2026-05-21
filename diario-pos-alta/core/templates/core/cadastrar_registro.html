@@ -1,0 +1,109 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h2>Novo registro diário</h2>
+
+<p><strong>Paciente:</strong> {{ paciente.nome }}</p>
+
+<hr>
+
+<form method="post" class="formulario">
+    {% csrf_token %}
+
+    <h3>Sinais vitais</h3>
+
+    <p>
+        <label>Temperatura:</label><br>
+        <input type="number" step="0.1" name="temperatura" required>
+    </p>
+
+    <p>
+        <label>Pressão arterial:</label><br>
+        <input type="text" name="pressao_arterial" placeholder="Ex: 120/80" required>
+    </p>
+
+    <p>
+        <label>Horas de sono noturnas:</label><br>
+        <input type="number" step="0.1" name="horas_sono" required>
+    </p>
+
+    <p>
+        <label>Frequência cardíaca:</label><br>
+        <input type="number" name="frequencia_cardiaca">
+    </p>
+
+    <p>
+        <label>Frequência respiratória:</label><br>
+        <input type="number" name="frequencia_respiratoria">
+    </p>
+
+    <p>
+        <label>Glicemia:</label><br>
+        <input type="number" name="glicemia">
+    </p>
+
+    <hr>
+
+    <h3>Nível de funcionalidade</h3>
+
+    <p>
+        <label>Alimentação:</label><br>
+        <select name="alimentacao" required>
+            <option value="sozinho">Sozinho</option>
+            <option value="com_auxilio">Com auxílio</option>
+            <option value="nao_realizou">Não realizou</option>
+        </select>
+    </p>
+
+    <p>
+        <label>Locomoção:</label><br>
+        <select name="locomocao" required>
+            <option value="sozinho">Sozinho</option>
+            <option value="com_auxilio">Com auxílio</option>
+            <option value="nao_realizou">Não realizou</option>
+        </select>
+    </p>
+
+    <p>
+        <label>Transferência (levantar/sentar):</label><br>
+        <select name="transferencia" required>
+            <option value="sozinho">Sozinho</option>
+            <option value="com_auxilio">Com auxílio</option>
+            <option value="nao_realizou">Não realizou</option>
+        </select>
+    </p>
+
+    <p>
+        <label>Tomar banho:</label><br>
+        <select name="banho" required>
+            <option value="sozinho">Sozinho</option>
+            <option value="com_auxilio">Com auxílio</option>
+            <option value="nao_realizou">Não realizou</option>
+        </select>
+    </p>
+
+    <p>
+        <label>Vestir-se:</label><br>
+        <select name="vestir_se" required>
+            <option value="sozinho">Sozinho</option>
+            <option value="com_auxilio">Com auxílio</option>
+            <option value="nao_realizou">Não realizou</option>
+        </select>
+    </p>
+
+    <hr>
+
+    <p>
+        <label>Observações gerais:</label><br>
+        <textarea name="observacoes" rows="5" cols="50"></textarea>
+    </p>
+
+    <div class="grupo-botoes">
+        <button type="submit" class="botao">Salvar registro</button>
+        <a href="/pacientes/{{ paciente.id }}/" class="botao botao-secundario">Voltar</a>
+    </div>
+
+</form>
+
+{% endblock %}
