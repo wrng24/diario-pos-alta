@@ -27,6 +27,7 @@ def cadastrar_paciente(request):
         data_alta = request.POST.get('data_alta')
 
         paciente = Paciente(
+            usuario=request.user,
             nome=nome,
             idade=idade,
             diagnostico=diagnostico,
